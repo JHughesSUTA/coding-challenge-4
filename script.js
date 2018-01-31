@@ -36,3 +36,19 @@ function Question(question, choices, answer) {
     this.choices = choices;
     this.answer = answer;
 }
+
+var q1 = Question("Who wrote 'The Messiah'?",
+                    ['Beethoven', 'Handel','Shostakovich'], 
+                    1);
+
+var q2 = Question("Who wrote 'Symphonie Fantastique'?",
+                    ['Berlioz', 'Copland', 'Barber'],
+                    0);
+
+var q3 = Question("'Claire De Lune' is an example of which style of composition?",
+                    ['20th Century', 'Romanticism', 'Impressionism', 'Neo-Classicism'],
+                    2);
+
+var q4 = Question("Chopin is most known for his compositions for which instrument?",
+                    ['trumpet', 'guitar', 'Crumhorn', 'Piano'],
+                    3);
