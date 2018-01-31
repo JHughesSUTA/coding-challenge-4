@@ -30,3 +30,9 @@ c) correct answer (I would use a number for this)
 
 11. Display the score in the console. Use yet another method for this.
 */
+
+function Question(question, choices, answer) {
+    this.question = question;
+    this.choices = choices;
+    this.answer = answer;
+}
