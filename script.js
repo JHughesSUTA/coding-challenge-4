@@ -109,14 +109,13 @@ c) correct answer (I would use a number for this)
     Question.prototype.checkAnswer = function(ans) {
         if (ans == this.answer) {
             console.log('CORRECT!');
-            nextQuestion();
         } else if (ans === 'exit') {
             console.log('Thank you for playing!');
         } else {
             console.log('WRONG!');
-            nextQuestion();
         }
     }
+
 
     var q1 = new Question("Who wrote 'The Messiah'?",
                         ['Beethoven', 'Handel','Shostakovich'], 
@@ -134,8 +133,9 @@ c) correct answer (I would use a number for this)
                         ['trumpet', 'guitar', 'Crumhorn', 'Piano'],
                         '3');
 
+    var questions = [q1, q2, q3, q4];
+    
     function nextQuestion() {
-        var questions = [q1, q2, q3, q4];
 
         var random = Math.floor(Math.random() * questions.length);
 
@@ -144,6 +144,10 @@ c) correct answer (I would use a number for this)
         var userAnswer = prompt("What is the correct answer?");
 
         questions[random].checkAnswer(userAnswer);
+
+        if (userAnswer !== 'exit') {
+            nextQuestion();
+        }
     }
 
     nextQuestion();
