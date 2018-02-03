@@ -106,47 +106,61 @@ c) correct answer (I would use a number for this)
         }
     }
 
-    Question.prototype.checkAnswer = function(ans) {
+    Question.prototype.checkAnswer = function(ans, callback) {
+        var sc; 
+
         if (ans == this.answer) {
             console.log('CORRECT!');
-        } else if (ans === 'exit') {
-            console.log('Thank you for playing!');
+            sc = callback(true);
         } else {
             console.log('WRONG!');
+            sc = callback(false);
         }
+
+        this.displayScore(sc);
     }
 
+    Question.prototype.displayScore = function(score) {
+        console.log('Your score is: ' + score);
+        console.log('-------------------------')
+    }
 
     var q1 = new Question("Who wrote 'The Messiah'?",
                         ['Beethoven', 'Handel','Shostakovich'], 
                         '1');
-
     var q2 = new Question("Who wrote 'Symphonie Fantastique'?",
                         ['Berlioz', 'Copland', 'Barber'],
                         '0');
-
     var q3 = new Question("'Claire De Lune' is an example of which style of composition?",
                         ['20th Century', 'Romanticism', 'Impressionism', 'Neo-Classicism'],
                         '2');
-
     var q4 = new Question("Chopin is most known for his compositions for which instrument?",
                         ['trumpet', 'guitar', 'Crumhorn', 'Piano'],
                         '3');
 
+    function increaseScore() {
+        var score = 0;
+        return function(correct) {
+            if (correct) {
+                score++;
+            }
+            return score; 
+        }
+    }
+
+    var keepScore = increaseScore();
+
     var questions = [q1, q2, q3, q4];
     
     function nextQuestion() {
-
         var random = Math.floor(Math.random() * questions.length);
-
         questions[random].displayQuestion();
-
         var userAnswer = prompt("What is the correct answer?");
-
-        questions[random].checkAnswer(userAnswer);
-
         if (userAnswer !== 'exit') {
+            questions[random].checkAnswer(userAnswer, keepScore);
             nextQuestion();
+        } else {
+            console.log('thank you for playing')
         }
     }
 
