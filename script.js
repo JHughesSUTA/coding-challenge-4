@@ -46,23 +46,34 @@ Question.prototype.displayQuestion = function() {
 
 var q1 = new Question("Who wrote 'The Messiah'?",
                     ['Beethoven', 'Handel','Shostakovich'], 
-                    1);
+                    '1');
 
 var q2 = new Question("Who wrote 'Symphonie Fantastique'?",
                     ['Berlioz', 'Copland', 'Barber'],
-                    0);
+                    '0');
 
 var q3 = new Question("'Claire De Lune' is an example of which style of composition?",
                     ['20th Century', 'Romanticism', 'Impressionism', 'Neo-Classicism'],
-                    2);
+                    '2');
 
 var q4 = new Question("Chopin is most known for his compositions for which instrument?",
                     ['trumpet', 'guitar', 'Crumhorn', 'Piano'],
-                    3);
+                    '3');
 
 
 var questions = [q1, q2, q3, q4];
 
 var random = Math.floor(Math.random() * questions.length);
 
-questions[random].displayQuestion();
+var randomQuestion = questions[random]
+
+randomQuestion.displayQuestion();
+
+var userAnswer = prompt("What is the correct answer?");
+
+if (userAnswer === randomQuestion.answer) {
+    console.log('YOU WIN!!!')
+} else {
+    console.log('err...maybe next time...')
+}
+
