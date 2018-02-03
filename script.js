@@ -39,6 +39,9 @@ function Question(question, choices, answer) {
 
 Question.prototype.displayQuestion = function() {
     console.log(this.question);
+    for (i = 0; i < this.choices.length; i++) {
+        console.log(i +': ' + this.choices[i]);
+    }
 }
 
 var q1 = new Question("Who wrote 'The Messiah'?",
